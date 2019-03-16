@@ -1,0 +1,186 @@
+# include <iostream>
+
+using namespace std;
+
+struct node
+
+{
+  
+  int info;
+    
+node *left;
+
+    node *right;
+}
+*root;
+
+class BST
+{
+ 
+   public:
+ 
+   BST()
+      
+  {
+       
+     root = NULL;
+    
+    }
+  
+  void insert(node *tree, node *newnode)
+
+    {
+
+    if (root == NULL)
+    
+{
+    
+	 root = new node;
+   
+     root->info = newnode->info;
+    
+    root->left = NULL;
+       
+ root->right = NULL;
+     
+   cout<<"Root Node is Added"<<endl;
+        
+return;
+    
+}
+    
+if (tree->info == newnode->info)
+  
+  {
+        
+cout<<"Element already in the tree"<<endl;
+ 
+       return;
+   
+ }
+   
+ if (tree->info > newnode->info)
+    
+{
+  
+      if (tree->left != NULL)
+
+        {
+     
+       insert(tree->left, newnode);
+	
+	}
+
+	else
+	{
+        
+    tree->left = newnode;
+      
+      (tree->left)->left = NULL;
+      
+      (tree->left)->right = NULL;
+          
+  cout<<"Node Added To Right"<<endl;
+       
+     return;
+        
+}
+
+    }
+    
+else
+   
+ {
+
+        if (tree->right != NULL)
+     
+   {
+        
+    insert(tree->right, newnode);
+  
+      }
+        else
+       
+ {
+        
+    tree->right = newnode;
+     
+       (tree->right)->left = NULL;
+      
+      (tree->right)->right = NULL;
+        
+    cout<<"Node Added To Left"<<endl;
+       
+     return;
+       
+ }	
+    }
+}
+
+void search(node*top,int a)
+{
+
+   
+     if(top->info==a)
+     
+   {
+           
+ cout<<top->info<<"\n";
+          
+  cout<<"koi mil gaya";
+        
+    return;
+     
+   }
+    
+    if(a>top->info)
+    
+    {
+        
+    search(top->right,a);//top=top->right;
+      
+  }
+      
+  if(a<top->info)
+    
+    {
+        
+    search(top->left,a);
+  
+      //top=top->left;
+     
+   }
+        
+  
+  }
+    
+ 
+   
+
+};
+
+int main()
+{
+
+    int i,choice, num;
+ 
+   BST bst;
+  
+  node *temp,*top;
+
+    for(i=0;i<10;i++)
+
+    {temp = new node;
+       
+     cout<<"Enter the number to be inserted : ";
+	 
+   cin>>temp->info;
+        
+    bst.insert(root, temp);
+       
+     }
+         
+    bst.search(root,5);
+         
+   return 0;
+}

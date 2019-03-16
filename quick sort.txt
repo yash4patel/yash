@@ -1,0 +1,77 @@
+#include<iostream>
+
+using namespace std;
+
+void qsort1(int a[],int,int);
+
+void exchg(int a[],int,int);
+int main()
+{int i;
+   
+ int a[]={21,12,16,24,55,23,37,88,29,114};
+  
+  qsort1(a,0,9);
+    
+for(i=0;i<10;i++)
+    
+{
+        cout<<a[i]<<"\n";
+   
+ }
+
+    return 0;
+}
+
+void qsort1(int a[],int left,int right)
+
+{
+
+    if(left<right)
+
+    {int i=left;
+  
+  int j=right+1;
+  
+  int pivot=a[left];
+    
+do
+
+
+    {
+ 
+   do{i++;}
+
+    while(a[i]<pivot);
+    
+do{j--;}
+ 
+   while(a[j]>pivot);
+   
+ if(i<j)
+ 
+
+   exchg(a,i,j);
+ 
+   }while(i<j);
+
+    exchg(a,left,j);
+ 
+   qsort1(a,left,j-1);
+    
+qsort1(a,j+1,right);
+    }
+}
+
+void exchg(int a[],int i,int j)
+
+{
+    int temp;
+    
+temp=a[i];
+    
+a[i]=a[j];
+    
+a[j]=temp;
+}
+
+
